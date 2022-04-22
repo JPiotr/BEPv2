@@ -10,9 +10,24 @@ public class Type {
     String id;
     @Field
     String name;
+    @Field
+    String logourl;
+
+    public String getLogourl() {
+        return logourl;
+    }
+
+    public void setLogourl(String logourl) {
+        this.logourl = logourl;
+    }
 
     public Type(String name) {
         this.name = name;
+    }
+
+    public Type(String name, String logourl) {
+        this.name = name;
+        this.logourl = logourl;
     }
 
     public String getName() {
@@ -26,8 +41,9 @@ public class Type {
     @Override
     public String toString() {
         return "Type{" +
-                "Id=" + id +
-                ", Name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", logourl='" + logourl + '\'' +
                 '}';
     }
 }
