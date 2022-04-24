@@ -34,9 +34,6 @@ public class Acces {
         this.insertDate = new Date();
     }
 
-    public void addEnova(Enova enova){
-        enovaAccesses.add(enova);
-    }
     public List<Enova> getEnovaAccesses() {
         return enovaAccesses;
     }

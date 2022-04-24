@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document("clients")
@@ -15,16 +16,37 @@ public class Client{
     @Id
     private String code;
     @Field
-    private String name;
+    public String name;
     @Field
-    private Integer number;
+    public Integer number;
     @DocumentReference(collection = "acceses")
     private Acces acces;
+    @Field
+    public Boolean isBR;
+    @Field
+    public List<Client> brClients = new ArrayList<>();
 
     public Client(String code, String name, Integer number) {
+        this.isBR = false;
         this.code = code;
         this.name = name;
         this.number = number;
+    }
+
+    public List<Client> getBrClients() {
+        return brClients;
+    }
+
+    public void setBrClients(List<Client> brClients) {
+        this.brClients = brClients;
+    }
+
+    public Boolean getBR() {
+        return isBR;
+    }
+
+    public void setBR(Boolean BR) {
+        isBR = BR;
     }
 
     public String getCode() {
@@ -66,6 +88,8 @@ public class Client{
                 ", name='" + name + '\'' +
                 ", number=" + number +
                 ", acces=" + acces +
+                ", isBR=" + isBR +
+                ", brClients=" + brClients +
                 '}';
     }
 }
