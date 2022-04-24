@@ -8,32 +8,40 @@ import wsei.project.BEP.entityes.Acces;
 import wsei.project.BEP.entityes.Type;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 public interface AccesRepository extends MongoRepository<Acces,String> {
-    //<S extends Acces> S findById(Long id);
-    List<Acces> findAllByType(Type type);
 
     @Override
     <S extends Acces> S save(S entity);
 
     @Override
+    Optional<Acces> findById(String s);
+
+    @Override
+    boolean existsById(String s);
+
+    @Override
+    Iterable<Acces> findAllById(Iterable<String> strings);
+
+    @Override
     long count();
+
+    @Override
+    void deleteById(String s);
 
     @Override
     void delete(Acces entity);
 
     @Override
+    void deleteAllById(Iterable<? extends String> strings);
+
+    @Override
     void deleteAll(Iterable<? extends Acces> entities);
 
     @Override
-    <S extends Acces> long count(Example<S> example);
-
-    @Override
-    <S extends Acces> boolean exists(Example<S> example);
-
-    @Override
-    <S extends Acces, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction);
+    void deleteAll();
 
     @Override
     <S extends Acces> List<S> saveAll(Iterable<S> entities);

@@ -10,9 +10,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import wsei.project.BEP.entityes.Acces;
-import wsei.project.BEP.entityes.Client;
-import wsei.project.BEP.entityes.Type;
+import wsei.project.BEP.entityes.*;
 import wsei.project.BEP.mongo.AccesRepository;
 import wsei.project.BEP.mongo.ClientRepository;
 import wsei.project.BEP.mongo.TypeRepository;
@@ -46,17 +44,27 @@ public class BepApplication {
 			trepo.insert(new Type("DB", "data/db.svg"));
 			trepo.insert(new Type("Inny", "data/other.svg"));
 
-			if(arepo.count() != 0){
-				arepo.deleteAll();
-				Acces initial = new Acces(trepo.findByName("Inny"),"!password","!login","!ID","!address");
-				List<Acces> alist = new ArrayList<Acces>();
-				alist.add(initial);
-				arepo.insert(initial);
-				crepo.deleteAll();
-				Client initial_client = new Client("!00000","!Inicjacyjny",0);
-				initial_client.setAccesList(alist);
-				crepo.insert(initial_client);
-			}
+//			if(arepo.count() != 0){
+//				arepo.deleteAll();
+//				Acces initial = new Acces();
+//				List<Acces> alist = new ArrayList<Acces>();
+//				alist.add(initial);
+//				arepo.insert(initial);
+//				crepo.deleteAll();
+//				Client initial_client = new Client("!00000","!Inicjacyjny",0);
+//				initial_client.setAccesList(alist);
+//				crepo.insert(initial_client);
+//			}
+			crepo.deleteAll();
+			arepo.deleteAll();
+
+			Enova e = new Enova("!Inicjacyjny","****",
+					new DB("!Inicjacyjny","0.0.0.0","sa","****",true),
+			trepo.findByName("Enova"));
+			crepo.insert(new Client("!00000","!Inicjacyjny",0));
+			Acces a = new Acces(crepo.findByName("!Inicjacyjny"));
+			a.getEnovaAccesses().add(e);
+			arepo.insert(a);
 		};
 	}
 

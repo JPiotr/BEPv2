@@ -1,85 +1,108 @@
 package wsei.project.BEP.entityes;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.*;
+
+import java.sql.Timestamp;
+import java.util.*;
 
 @Document("acceses")
 public class Acces {
-    @MongoId
+    @Id
     private String id;
+    @DocumentReference(collection = "clients")
     @Field
-    public Type type;
+    public Client cid;
     @Field
-    public String password;
+    public Date insertDate;
+
     @Field
-    public String login;
+    public Date modyfyDate;
+
     @Field
-    public String id_tv;
+    public List<TeamViewer> tvAccesses = new ArrayList<>();
     @Field
-    public String address;
+    public List<AnyDesk> adAccesses = new ArrayList<>();
+    @Field
+    public List<RDP> rdpAccesses = new ArrayList<>();
+    @Field
+    public List<Enova> enovaAccesses = new ArrayList<>();
 
-    public Acces(Type type, String password, String login, String ID, String address) {
-        this.type = type;
-        this.password = password;
-        this.login = login;
-        this.id_tv = ID;
-        this.address = address;
+    public Acces(Client cid) {
+        this.id = UUID.randomUUID().toString();
+        this.cid = cid;
+        this.insertDate = new Date();
     }
 
-    public Type getType() {
-        return type;
+    public void addEnova(Enova enova){
+        enovaAccesses.add(enova);
+    }
+    public List<Enova> getEnovaAccesses() {
+        return enovaAccesses;
     }
 
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getId_tv() {
-        return id_tv;
-    }
-
-    public void setId_tv(String ID) {
-        this.id_tv = ID;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEnovaAccesses(List<Enova> enovaAccesses) {
+        this.enovaAccesses = enovaAccesses;
     }
 
     public String getId() {
         return id;
     }
 
+    public Client getCid() {
+        return cid;
+    }
+
+    public void setCid(Client cid) {
+        this.cid = cid;
+    }
+
+    public Date getInsertDate() {
+        return insertDate;
+    }
+
+    public Date getModyfyDate() {
+        return modyfyDate;
+    }
+
+    public void setModyfyDate(Date modyfyDate) {
+        this.modyfyDate = modyfyDate;
+    }
+
+    public List<TeamViewer> getTvAccesses() {
+        return tvAccesses;
+    }
+
+    public void setTvAccesses(List<TeamViewer> tvAccesses) {
+        this.tvAccesses = tvAccesses;
+    }
+
+    public List<AnyDesk> getAdAccesses() {
+        return adAccesses;
+    }
+
+    public void setAdAccesses(List<AnyDesk> adAccesses) {
+        this.adAccesses = adAccesses;
+    }
+
+    public List<RDP> getRdpAccesses() {
+        return rdpAccesses;
+    }
+
+    public void setRdpAccesses(List<RDP> rdpAccesses) {
+        this.rdpAccesses = rdpAccesses;
+    }
+
     @Override
     public String toString() {
         return "Acces{" +
-                "id=" + id +
-                ", type='" + type.toString() + '\'' +
-                ", password='" + password + '\'' +
-                ", login='" + login + '\'' +
-                ", ID='" + id_tv + '\'' +
-                ", address='" + address + '\'' +
+                "id='" + id + '\'' +
+                ", cid=" + cid +
+                ", insertDate=" + insertDate +
+                ", modyfyDate=" + modyfyDate +
+                ", tvAccesses=" + tvAccesses +
+                ", adAccesses=" + adAccesses +
+                ", rdpAccesses=" + rdpAccesses +
                 '}';
     }
 }

@@ -1,7 +1,9 @@
 package wsei.project.BEP.entityes;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Reference;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
@@ -10,14 +12,14 @@ import java.util.List;
 @Document("clients")
 public class Client{
 
-    @MongoId
+    @Id
     private String code;
     @Field
     private String name;
     @Field
     private Integer number;
-    @Reference
-    private List<Acces> accesList;
+    @DocumentReference(collection = "acceses")
+    private Acces acces;
 
     public Client(String code, String name, Integer number) {
         this.code = code;
@@ -49,19 +51,21 @@ public class Client{
         this.number = number;
     }
 
-    public List<Acces> getAccesList() {
-        return accesList;
+    public Acces getAccesList() {
+        return acces;
     }
 
-    public void setAccesList(List<Acces> accesList) {
-        this.accesList = accesList;
+    public void setAcces(Acces acces) {
+        this.acces = acces;
     }
 
     @Override
-    public String toString(){
-        return String.format(
-                "Client[code=%s, name='%s', number='%s',access=['%s']]",
-                code, name, number,accesList.toArray().toString());
+    public String toString() {
+        return "Client{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", number=" + number +
+                ", acces=" + acces +
+                '}';
     }
-
 }
