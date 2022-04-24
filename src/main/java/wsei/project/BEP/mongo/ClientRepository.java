@@ -13,6 +13,21 @@ public interface ClientRepository extends MongoRepository<Client,String> {
     <S extends Client> S findByNumber(Integer number);
 
     @Override
+    <S extends Client> S save(S entity);
+
+    @Override
+    long count();
+
+    @Override
+    <S extends Client> long count(Example<S> example);
+
+    @Override
+    <S extends Client> boolean exists(Example<S> example);
+
+    @Override
+    void delete(Client entity);
+
+    @Override
     <S extends Client> List<S> saveAll(Iterable<S> entities);
 
     @Override

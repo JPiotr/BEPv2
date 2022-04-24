@@ -15,4 +15,11 @@ public class TypeService {
     public List<Type> getAllTypes(){
         return repo.findAll();
     }
+
+    public Type getOneByName(String name){
+        if(repo.findByName(name) == null){
+            return null;
+        }
+        return repo.findByName(name);
+    }
 }

@@ -6,9 +6,8 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document("acceses")
 public class Acces {
-    //private Type type = new Type();
     @MongoId
-    private Long id;
+    private String id;
     @Field
     public Type type;
     @Field
@@ -20,8 +19,7 @@ public class Acces {
     @Field
     public String address;
 
-    public Acces(Long id, Type type, String password, String login, String ID, String address) {
-        this.id = id;
+    public Acces(Type type, String password, String login, String ID, String address) {
         this.type = type;
         this.password = password;
         this.login = login;
@@ -69,7 +67,7 @@ public class Acces {
         this.address = address;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

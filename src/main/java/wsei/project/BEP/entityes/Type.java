@@ -21,13 +21,14 @@ public class Type {
         this.logourl = logourl;
     }
 
-    public Type(String name) {
-        this.name = name;
-    }
-
     public Type(String name, String logourl) {
+        if(logourl == null){
+            this.logourl = "data/deflaut.svg";
+        }
+        else{
+          this.logourl = logourl;
+        }
         this.name = name;
-        this.logourl = logourl;
     }
 
     public String getName() {

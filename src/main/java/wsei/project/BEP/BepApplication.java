@@ -1,12 +1,26 @@
 package wsei.project.BEP;
 
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Example;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+import wsei.project.BEP.entityes.Acces;
+import wsei.project.BEP.entityes.Client;
 import wsei.project.BEP.entityes.Type;
+import wsei.project.BEP.mongo.AccesRepository;
+import wsei.project.BEP.mongo.ClientRepository;
 import wsei.project.BEP.mongo.TypeRepository;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 //todo:Front End
 //todo:Angular front api
@@ -20,18 +34,47 @@ public class BepApplication {
 
 	//Initializer
 	@Bean
-	CommandLineRunner runner(TypeRepository repository){
+	CommandLineRunner runner(TypeRepository trepo, ClientRepository crepo, AccesRepository arepo){
 		return args -> {
 			//reset types repo
-			repository.deleteAll();
-			repository.insert(new Type("RDP","data/rdp.svg"));
-			repository.insert(new Type("VPN", "data/vpn.svg"));
-			repository.insert(new Type("Enova", "data/enova.svg"));
-			repository.insert(new Type("TeamViewer", "data/tv.svg"));
-			repository.insert(new Type("Anydesk", "data/ad.svg"));
-			repository.insert(new Type("Inny", "data/other.svg"));
-			repository.insert(new Type("DB", "data/db.svg"));
+			trepo.deleteAll();
+			trepo.insert(new Type("RDP","data/rdp.svg"));
+			trepo.insert(new Type("VPN", "data/vpn.svg"));
+			trepo.insert(new Type("Enova", "data/enova.svg"));
+			trepo.insert(new Type("TeamViewer", "data/tv.svg"));
+			trepo.insert(new Type("Anydesk", "data/ad.svg"));
+			trepo.insert(new Type("DB", "data/db.svg"));
+			trepo.insert(new Type("Inny", "data/other.svg"));
+
+			if(arepo.count() != 0){
+				arepo.deleteAll();
+				Acces initial = new Acces(trepo.findByName("Inny"),"!password","!login","!ID","!address");
+				List<Acces> alist = new ArrayList<Acces>();
+				alist.add(initial);
+				arepo.insert(initial);
+				crepo.deleteAll();
+				Client initial_client = new Client("!00000","!Inicjacyjny",0);
+				initial_client.setAccesList(alist);
+				crepo.insert(initial_client);
+			}
 		};
+	}
+
+
+	@Bean
+	public CorsFilter corsFilter(){
+		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.setAllowCredentials(true);
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
+				"Accept", "Jwt-Token", "Authorization", "Origin, Accept", "X-Request-With", "Access-Control-Request-Method",
+				"Access-Control-Request-Headers"));
+		corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Jwt-Token", "Authorization",
+				"Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credential", "Filename"));
+		corsConfiguration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
+		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",corsConfiguration);
+		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
 
 
