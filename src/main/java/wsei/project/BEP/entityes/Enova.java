@@ -1,5 +1,6 @@
 package wsei.project.BEP.entityes;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -9,16 +10,18 @@ import java.util.UUID;
 
 @Document("enovas")
 public class Enova {
-    @MongoId
+    @Id
     private String id;
     @Field
     public String login;
     @Field
     public String password = "none";
 
+    @Field
     @DocumentReference(collection = "types")
     public Type type;
 
+    @Field
     @DocumentReference(collection = "dbs")
     public DB db;
 
