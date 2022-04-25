@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document("clients")
-public class Client{
+public class Client {
 
     @Id
     private String code;

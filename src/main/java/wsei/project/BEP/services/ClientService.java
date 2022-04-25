@@ -15,4 +15,7 @@ public class ClientService {
     public List<Client> getAllClients(){
         return repo.findAll();
     }
+
+    //todo: Contacts Entity
+    //todo: Contact types Enum
 }
