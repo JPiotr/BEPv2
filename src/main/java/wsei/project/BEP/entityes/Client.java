@@ -8,7 +8,10 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Document("clients")
@@ -18,14 +21,18 @@ public class Client {
     @Indexed(unique = true)
     private String code;
     @Field
+    private LocalDate insertDate;
+    @DocumentReference(collection = "acceses")
+    private Acces acces;
+    @Field
     public String name;
     @Field
     @Indexed(unique = true)
     public Integer number;
     @Field
     public DefaultStatus status;
-    @DocumentReference(collection = "acceses")
-    private Acces acces;
+    @Field
+    public LocalDate modyfyDate;
     @Field
     public Boolean isBR;
     @Field
@@ -36,6 +43,28 @@ public class Client {
         this.code = code;
         this.name = name;
         this.number = number;
+        this.status = DefaultStatus.NEW;
+        this.insertDate = LocalDate.now();
+    }
+
+    public LocalDate getInsertDate() {
+        return insertDate;
+    }
+
+    public LocalDate getModyfyDate() {
+        return modyfyDate;
+    }
+
+    public void setModyfyDate(LocalDate modyfyDate) {
+        this.modyfyDate = modyfyDate;
+    }
+
+    public DefaultStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(DefaultStatus status) {
+        this.status = status;
     }
 
     public List<Client> getBrClients() {
@@ -90,9 +119,12 @@ public class Client {
     public String toString() {
         return "Client{" +
                 "code='" + code + '\'' +
+                ", insertDate=" + insertDate +
+                ", acces=" + acces +
                 ", name='" + name + '\'' +
                 ", number=" + number +
-                ", acces=" + acces +
+                ", status=" + status +
+                ", modyfyDate=" + modyfyDate +
                 ", isBR=" + isBR +
                 ", brClients=" + brClients +
                 '}';
