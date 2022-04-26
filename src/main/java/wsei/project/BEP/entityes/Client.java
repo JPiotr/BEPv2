@@ -2,6 +2,7 @@ package wsei.project.BEP.entityes;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Reference;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -14,11 +15,15 @@ import java.util.List;
 public class Client {
 
     @Id
+    @Indexed(unique = true)
     private String code;
     @Field
     public String name;
     @Field
+    @Indexed(unique = true)
     public Integer number;
+    @Field
+    public DefaultStatus status;
     @DocumentReference(collection = "acceses")
     private Acces acces;
     @Field
