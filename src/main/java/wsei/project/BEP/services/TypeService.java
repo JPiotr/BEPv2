@@ -2,7 +2,6 @@ package wsei.project.BEP.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
 import wsei.project.BEP.entityes.Type;
 import wsei.project.BEP.mongo.TypeRepository;
 

@@ -4,43 +4,74 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import wsei.project.BEP.entityes.Client;
 import wsei.project.BEP.entityes.Type;
 import wsei.project.BEP.services.TypeService;
 
-import java.rmi.ServerException;
 import java.util.List;
 
 @RestController
+@RequestMapping("/types")
 @AllArgsConstructor
 public class TypeController {
 
     private final TypeService serv;
 
-    @GetMapping("/types")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Type> index() {
-        return serv.getAllTypes();
+    public ResponseEntity<List<Type>> index() {
+        List<Type> x = serv.getAllTypes();
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(x);
     }
 
-    @GetMapping("types/{name}")
+    @RequestMapping(value = "/{name}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Type getOneByName(@PathVariable String name){
-        return serv.getOneByName(name);
+    public ResponseEntity<Type> getOneByName(@PathVariable String name){
+        Type x = serv.getOneByName(name);
+        if(x != null) return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(x);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/types/{name}/url")
+    @RequestMapping(value = "/{name}/url",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String getUrlByName(@PathVariable String name){
-        return serv.getLogoUrlByName(name);
+    public ResponseEntity<String> getUrlByName(@PathVariable String name){
+        String url = serv.getLogoUrlByName(name);
+        if(url != null) return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.TEXT_PLAIN).body(url);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/types/{name}/id")
+    @RequestMapping(value = "/{name}/id",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String getIdByName(@PathVariable String name){
-        return serv.getIdByName(name);
+    public ResponseEntity<String> getIdByName(@PathVariable String name){
+        String id = serv.getIdByName(name);
+        if(id != null) return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.TEXT_PLAIN).body(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+//todo: Delete method
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    public ResponseEntity<Type> deleteType(Type type){
+        return null;
     }
 
-
+    @RequestMapping(value = "/new",
+            method = RequestMethod.PUT,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Type> newClient(@RequestBody Type type){
+        Type x = serv.insetNewType(type.getName(), type.getLogourl());
+        if(x != null) return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(x);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
