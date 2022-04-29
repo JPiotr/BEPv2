@@ -1,9 +1,9 @@
-package wsei.project.BEP.entityes;
+package wsei.project.BEP.entityes.Access;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.*;
+import wsei.project.BEP.entityes.*;
 
-import java.sql.Timestamp;
 import java.util.*;
 
 @Document("acceses")

@@ -1,9 +1,10 @@
-package wsei.project.BEP.entityes;
+package wsei.project.BEP.entityes.Access;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
+import wsei.project.BEP.entityes.Type;
 
 @Document("anydesks")
 public class AnyDesk {

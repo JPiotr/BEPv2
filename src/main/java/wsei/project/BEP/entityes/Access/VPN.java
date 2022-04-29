@@ -1,4 +1,4 @@
-package wsei.project.BEP.entityes;
+package wsei.project.BEP.entityes.Access;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

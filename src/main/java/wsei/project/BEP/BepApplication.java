@@ -6,19 +6,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Example;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import wsei.project.BEP.entityes.*;
-import wsei.project.BEP.mongo.AccesRepository;
+import wsei.project.BEP.entityes.Access.Acces;
+import wsei.project.BEP.entityes.Access.DB;
+import wsei.project.BEP.entityes.Access.Enova;
+import wsei.project.BEP.mongo.Access.AccesRepository;
 import wsei.project.BEP.mongo.ClientRepository;
 import wsei.project.BEP.mongo.TypeRepository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 //todo:Front End
 //todo:Angular front api

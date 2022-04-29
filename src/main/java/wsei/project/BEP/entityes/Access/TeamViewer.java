@@ -1,9 +1,10 @@
-package wsei.project.BEP.entityes;
+package wsei.project.BEP.entityes.Access;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
+import wsei.project.BEP.entityes.Type;
 
 import java.util.Objects;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package wsei.project.BEP.controllers;
+package wsei.project.BEP.controllers.Access;
 
 import org.springframework.stereotype.Controller;
 

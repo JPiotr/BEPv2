@@ -1,4 +1,4 @@
-package wsei.project.BEP.services;
+package wsei.project.BEP.services.entityes;
 
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
@@ -8,9 +8,6 @@ import wsei.project.BEP.entityes.DefaultStatus;
 import wsei.project.BEP.mongo.ClientRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
