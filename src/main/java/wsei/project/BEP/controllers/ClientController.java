@@ -42,8 +42,8 @@ public class ClientController {
     produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Client> newClient(@RequestBody Client client){
         Client x = serv.addClient(client);
-        if(x != null) return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(x);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        if(x != null) return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(x);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @RequestMapping(value = "/update",

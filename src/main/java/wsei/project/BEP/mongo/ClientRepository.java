@@ -14,5 +14,5 @@ public interface ClientRepository extends MongoRepository<Client,String> {
     <S extends Client> S findByNumber(Integer number);
 
     <E extends Client> List<E> findClientsByStatus(DefaultStatus status);
-
+//    <E extends Client> List<E> findClientsByStatusOrCodeOrName(DefaultStatus status);
 }
