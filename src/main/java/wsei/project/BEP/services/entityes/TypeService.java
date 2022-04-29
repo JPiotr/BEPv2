@@ -1,4 +1,4 @@
-package wsei.project.BEP.services;
+package wsei.project.BEP.services.entityes;
 
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;

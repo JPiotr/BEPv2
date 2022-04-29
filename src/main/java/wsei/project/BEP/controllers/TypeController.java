@@ -5,9 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import wsei.project.BEP.entityes.Client;
 import wsei.project.BEP.entityes.Type;
-import wsei.project.BEP.services.TypeService;
+import wsei.project.BEP.services.entityes.TypeService;
 
 import java.util.List;
 
