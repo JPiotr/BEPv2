@@ -38,8 +38,12 @@ public class ClientService {
         return repo.exists(Example.of(client));
     }
 
-    public List<Client> getClientsByWhatever(String whatever){
-        //todo:do zrobienia wyszukiwanie po czymkolwiek
+    public Client getClientsByWhatever(String whatever){
+        Client tCode = repo.findByCode(whatever);
+        Client tName = repo.findByName(whatever);
+        if(tCode != null) return tCode;
+        if(tName != null) return tName;
+
         return null;
     }
 
@@ -73,5 +77,14 @@ public class ClientService {
         }
     }
 
+    public Client addBrClientToClient(Client brClient, Client client){
+        Client x = repo.findByCode(client.getCode());
+        if(x != null){
+            x.getBrClients().add(brClient);
+            repo.save(x);
+            return x;
+        }
+        else return null;
+    }
     //todo: Contacts Entity
 }

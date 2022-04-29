@@ -27,12 +27,11 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(x);
     }
 
-    //todo:Wypełnienie metody w serwisie
     @GetMapping(
             value = "/{search}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Client>> getClientByWhatever(@PathVariable String search) {
-        List<Client> x = serv.getClientsByWhatever(search);
+    public ResponseEntity<Client> getClientByWhatever(@PathVariable String search) {
+        Client x = serv.getClientsByWhatever(search);
         if(x != null) return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(x);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }

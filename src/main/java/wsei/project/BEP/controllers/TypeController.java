@@ -42,5 +42,5 @@ public class TypeController {
         return serv.getIdByName(name);
     }
 
-//   todo:Dodanie PostMappingu
+
 }
