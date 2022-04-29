@@ -21,6 +21,8 @@ import java.util.Arrays;
 
 //todo:Front End
 //todo:Angular front api
+//todo:Refactor Access
+//todo:Refactor public and private elements and methods
 
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
