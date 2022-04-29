@@ -1,6 +1,7 @@
 package wsei.project.BEP.services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import wsei.project.BEP.entityes.Type;
 import wsei.project.BEP.mongo.TypeRepository;
@@ -35,5 +36,10 @@ public class TypeService {
 
     public Type insetNewType(String name, String logoUrl){
         return repo.insert(new Type(name,logoUrl));
+    }
+
+    public Type addNewType(Type type){
+        if(repo.exists(Example.of(type))) return null;
+        return  repo.insert(type);
     }
 }

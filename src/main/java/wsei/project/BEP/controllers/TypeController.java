@@ -69,9 +69,19 @@ public class TypeController {
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Type> newClient(@RequestBody Type type){
+    public ResponseEntity<Type> newType(@RequestBody Type type){
         Type x = serv.insetNewType(type.getName(), type.getLogourl());
         if(x != null) return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(x);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @RequestMapping(value = "/new",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Type> addNewType(@RequestBody Type type){
+        Type x = serv.addNewType(type);
+        if(x != null) return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(x);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }
