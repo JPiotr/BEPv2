@@ -14,7 +14,7 @@ public class Acces {
     @Field
     public Client cid;
     @Field
-    public Date insertDate;
+    private final Date insertDate;
 
     @Field
     public Date modyfyDate;
