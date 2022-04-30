@@ -14,6 +14,8 @@ import wsei.project.BEP.entityes.Access.Acces;
 import wsei.project.BEP.entityes.Access.DB;
 import wsei.project.BEP.entityes.Access.Enova;
 import wsei.project.BEP.mongo.Access.AccesRepository;
+import wsei.project.BEP.mongo.Access.DBRepository;
+import wsei.project.BEP.mongo.Access.EnovaRepository;
 import wsei.project.BEP.mongo.ClientRepository;
 import wsei.project.BEP.mongo.TypeRepository;
 
@@ -33,7 +35,7 @@ public class BepApplication {
 
 	//Initializer
 	@Bean
-	CommandLineRunner runner(TypeRepository trepo, ClientRepository crepo, AccesRepository arepo){
+	CommandLineRunner runner(TypeRepository trepo, ClientRepository crepo, AccesRepository arepo, DBRepository dbrepo, EnovaRepository erepo){
 		return args -> {
 			//reset types repo
 			trepo.deleteAll();
@@ -58,12 +60,21 @@ public class BepApplication {
 //			}
 			crepo.deleteAll();
 			arepo.deleteAll();
+			dbrepo.deleteAll();
+			erepo.deleteAll();
 
+			DB db = new DB("!Inicjacyjny","0.0.0.0","sa","****",true);
+			dbrepo.insert(db);
 			Enova e = new Enova("!Inicjacyjny","****",
-					new DB("!Inicjacyjny","0.0.0.0","sa","****",true),
+					db,
 			trepo.findByName("Enova"));
-			crepo.insert(new Client("!00000","!Inicjacyjny",0));
+			erepo.insert(e);
+			Client c = new Client("!00000","!Inicjacyjny",0);
+
+			crepo.insert(c);
 			Acces a = new Acces(crepo.findByName("!Inicjacyjny"));
+			c.setAcces(a);
+			crepo.save(c);
 			a.getEnovaAccesses().add(e);
 			arepo.insert(a);
 		};
