@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 import wsei.project.BEP.entityes.Type;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,10 +19,14 @@ public class RDP {
     @Field
     public String ipaddress;
     @Field
-    public String password = "none";
+    private String password = "none";
     @Field
     @DocumentReference(collection = "types")
     public Type type;
+    @Field
+    private final LocalDate insertDate;
+    @Field
+    public LocalDate modyfyDate;
 
     public RDP(String name, String ipaddress, String password, Type type) {
         this.id = UUID.randomUUID().toString();
@@ -29,10 +34,15 @@ public class RDP {
         this.ipaddress = ipaddress;
         this.password = password;
         this.type = type;
+        this.insertDate = LocalDate.now();
     }
 
     public String getId() {
         return id;
+    }
+
+    public LocalDate getInsertDate() {
+        return insertDate;
     }
 
     public String getName() {
@@ -67,21 +77,12 @@ public class RDP {
         this.type = type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RDP)) return false;
-        RDP rdp = (RDP) o;
-        return getId().equals(rdp.getId()) &&
-                getName().equals(rdp.getName()) &&
-                getIpaddress().equals(rdp.getIpaddress()) &&
-                getPassword().equals(rdp.getPassword()) &&
-                getType().equals(rdp.getType());
+    public LocalDate getModyfyDate() {
+        return modyfyDate;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getIpaddress(), getPassword(), getType());
+    public void setModyfyDate(LocalDate modyfyDate) {
+        this.modyfyDate = modyfyDate;
     }
 
     @Override
@@ -92,6 +93,8 @@ public class RDP {
                 ", ipaddress='" + ipaddress + '\'' +
                 ", password='" + password + '\'' +
                 ", type=" + type +
+                ", insertDate=" + insertDate +
+                ", modyfyDate=" + modyfyDate +
                 '}';
     }
 

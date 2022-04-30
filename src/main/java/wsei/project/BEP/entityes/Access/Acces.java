@@ -27,11 +27,22 @@ public class Acces {
     public List<RDP> rdpAccesses = new ArrayList<>();
     @Field
     public List<Enova> enovaAccesses = new ArrayList<>();
+    @Field
+    public List<VPN> vpnAccesses = new ArrayList<>();
 
     public Acces(Client cid) {
         this.id = UUID.randomUUID().toString();
         this.cid = cid;
         this.insertDate = new Date();
+    }
+
+
+    public List<VPN> getVpnAccesses() {
+        return vpnAccesses;
+    }
+
+    public void setVpnAccesses(List<VPN> vpnAccesses) {
+        this.vpnAccesses = vpnAccesses;
     }
 
     public List<Enova> getEnovaAccesses() {

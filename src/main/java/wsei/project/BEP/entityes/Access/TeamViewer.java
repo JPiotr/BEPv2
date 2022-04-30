@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 import wsei.project.BEP.entityes.Type;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,10 +19,14 @@ public class TeamViewer {
     @Field
     public String connectionId;
     @Field
-    public String password = "none";
+    private String password = "none";
     @Field
     @DocumentReference(collection = "types")
     public Type type;
+    @Field
+    private final LocalDate insertDate;
+    @Field
+    public LocalDate modyfyDate;
 
     public TeamViewer(String name, String connectionId, String password, Type type) {
         this.id = UUID.randomUUID().toString();
@@ -29,10 +34,15 @@ public class TeamViewer {
         this.connectionId = connectionId;
         this.password = password;
         this.type = type;
+        this.insertDate = LocalDate.now();
     }
 
     public String getId() {
         return id;
+    }
+
+    public LocalDate getInsertDate() {
+        return insertDate;
     }
 
     public String getName() {
@@ -67,21 +77,12 @@ public class TeamViewer {
         this.type = type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TeamViewer)) return false;
-        TeamViewer that = (TeamViewer) o;
-        return getId().equals(that.getId()) &&
-                getName().equals(that.getName()) &&
-                getConnectionId().equals(that.getConnectionId()) &&
-                getPassword().equals(that.getPassword()) &&
-                getType().equals(that.getType());
+    public LocalDate getModyfyDate() {
+        return modyfyDate;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getConnectionId(), getPassword(), getType());
+    public void setModyfyDate(LocalDate modyfyDate) {
+        this.modyfyDate = modyfyDate;
     }
 
     @Override
@@ -92,6 +93,8 @@ public class TeamViewer {
                 ", connectionId='" + connectionId + '\'' +
                 ", password='" + password + '\'' +
                 ", type=" + type +
+                ", insertDate=" + insertDate +
+                ", modyfyDate=" + modyfyDate +
                 '}';
     }
 }

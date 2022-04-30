@@ -1,14 +1,16 @@
 package wsei.project.BEP.entityes.Access;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Objects;
+import java.util.UUID;
 
-@Document
+@Document("dbs")
 public class DB {
-    @MongoId
+    @Id
     private String id;
     @Field
     public String name;
@@ -17,11 +19,12 @@ public class DB {
     @Field
     public String adminLogin = "sa";
     @Field
-    public String password;
+    private String password = "none";
     @Field
     public Boolean integratedLogin = true;
 
     public DB(String name, String ipaddress, String adminLogin, String password, Boolean integratedLogin) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.ipaddress = ipaddress;
         this.password = password;
