@@ -18,7 +18,7 @@ public class Client {
     @Indexed(unique = true)
     private String code;
     @Field
-    private final LocalDate insertDate;
+    private LocalDate insertDate;
     @DocumentReference(collection = "acceses")
     private Acces acces;
     @Field
