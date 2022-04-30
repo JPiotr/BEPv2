@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import wsei.project.BEP.entityes.Access.DB;
 import wsei.project.BEP.entityes.Type;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Document("enovas")
@@ -16,11 +17,17 @@ public class Enova {
     @Field
     public String login;
     @Field
-    public String password = "none";
+    private String password = "none";
 
     @Field
     @DocumentReference(collection = "types")
     public Type type;
+
+    @Field
+    private final LocalDate insertDate;
+
+    @Field
+    public LocalDate modyfyDate;
 
     @Field
     @DocumentReference(collection = "dbs")
@@ -32,6 +39,19 @@ public class Enova {
         this.password = password;
         this.db = db;
         this.type = type;
+        this.insertDate = LocalDate.now();
+    }
+
+    public LocalDate getInsertDate() {
+        return insertDate;
+    }
+
+    public LocalDate getModyfyDate() {
+        return modyfyDate;
+    }
+
+    public void setModyfyDate(LocalDate modyfyDate) {
+        this.modyfyDate = modyfyDate;
     }
 
     public Type getType() {
