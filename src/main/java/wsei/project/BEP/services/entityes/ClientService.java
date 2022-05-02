@@ -64,7 +64,6 @@ public class ClientService {
         if(newc == null) return null;
 
         if(status != newc.getStatus()){
-            newc.setModyfyDate(LocalDate.now());
             newc.setStatus(status);
             repo.save(newc);
             return newc;

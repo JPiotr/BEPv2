@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import wsei.project.BEP.entityes.Access.Acces;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class Client {
     @Indexed(unique = true)
     private String code;
     @Field
-    private LocalDate insertDate;
+    private LocalDateTime insertDate;
     @DocumentReference(collection = "acceses")
     private Acces acces;
     @Field
@@ -29,7 +31,7 @@ public class Client {
     @Field
     public DefaultStatus status;
     @Field
-    public LocalDate modyfyDate;
+    public LocalDateTime modyfyDate;
     @Field
     public Boolean isBR;
     @Field
@@ -41,19 +43,19 @@ public class Client {
         this.name = name;
         this.number = number;
         this.status = DefaultStatus.NEW;
-        this.insertDate = LocalDate.now();
+        this.insertDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
-    public LocalDate getInsertDate() {
+    public LocalDateTime getInsertDate() {
         return insertDate;
     }
 
-    public LocalDate getModyfyDate() {
+    public LocalDateTime getModyfyDate() {
         return modyfyDate;
     }
 
-    public void setModyfyDate(LocalDate modyfyDate) {
-        this.modyfyDate = modyfyDate;
+    public void setModyfyDate() {
+        this.modyfyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
     public DefaultStatus getStatus() {
@@ -61,6 +63,7 @@ public class Client {
     }
 
     public void setStatus(DefaultStatus status) {
+        this.setModyfyDate();
         this.status = status;
     }
 
@@ -69,6 +72,7 @@ public class Client {
     }
 
     public void setBrClients(List<Client> brClients) {
+        this.setModyfyDate();
         this.brClients = brClients;
     }
 
@@ -77,6 +81,7 @@ public class Client {
     }
 
     public void setBR(Boolean BR) {
+        this.setModyfyDate();
         isBR = BR;
     }
 
@@ -85,6 +90,7 @@ public class Client {
     }
 
     public void setCode(String code) {
+        this.setModyfyDate();
         this.code = code;
     }
 
@@ -93,6 +99,7 @@ public class Client {
     }
 
     public void setName(String name) {
+        this.setModyfyDate();
         this.name = name;
     }
 
@@ -101,6 +108,7 @@ public class Client {
     }
 
     public void setNumber(Integer number) {
+        this.setModyfyDate();
         this.number = number;
     }
 
@@ -109,6 +117,7 @@ public class Client {
     }
 
     public void setAcces(Acces acces) {
+        this.setModyfyDate();
         this.acces = acces;
     }
 
