@@ -4,6 +4,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.*;
 import wsei.project.BEP.entityes.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 @Document("acceses")
@@ -14,10 +17,10 @@ public class Acces {
     @Field
     public Client cid;
     @Field
-    private final Date insertDate;
+    private LocalDateTime insertDate;
 
     @Field
-    public Date modyfyDate;
+    public LocalDateTime modyfyDate;
 
     @Field
     public List<TeamViewer> tvAccesses = new ArrayList<>();
@@ -33,7 +36,7 @@ public class Acces {
     public Acces(Client cid) {
         this.id = UUID.randomUUID().toString();
         this.cid = cid;
-        this.insertDate = new Date();
+        this.insertDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));;
     }
 
 
@@ -42,6 +45,7 @@ public class Acces {
     }
 
     public void setVpnAccesses(List<VPN> vpnAccesses) {
+        this.setModyfyDate();
         this.vpnAccesses = vpnAccesses;
     }
 
@@ -50,6 +54,7 @@ public class Acces {
     }
 
     public void setEnovaAccesses(List<Enova> enovaAccesses) {
+        this.setModyfyDate();
         this.enovaAccesses = enovaAccesses;
     }
 
@@ -62,19 +67,20 @@ public class Acces {
     }
 
     public void setCid(Client cid) {
+        this.setModyfyDate();
         this.cid = cid;
     }
 
-    public Date getInsertDate() {
+    public LocalDateTime getInsertDate() {
         return insertDate;
     }
 
-    public Date getModyfyDate() {
+    public LocalDateTime getModyfyDate() {
         return modyfyDate;
     }
 
-    public void setModyfyDate(Date modyfyDate) {
-        this.modyfyDate = modyfyDate;
+    public void setModyfyDate() {
+        this.modyfyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
     public List<TeamViewer> getTvAccesses() {
@@ -82,6 +88,7 @@ public class Acces {
     }
 
     public void setTvAccesses(List<TeamViewer> tvAccesses) {
+        this.setModyfyDate();
         this.tvAccesses = tvAccesses;
     }
 
@@ -90,6 +97,7 @@ public class Acces {
     }
 
     public void setAdAccesses(List<AnyDesk> adAccesses) {
+        this.setModyfyDate();
         this.adAccesses = adAccesses;
     }
 
@@ -98,6 +106,7 @@ public class Acces {
     }
 
     public void setRdpAccesses(List<RDP> rdpAccesses) {
+        this.setModyfyDate();
         this.rdpAccesses = rdpAccesses;
     }
 
