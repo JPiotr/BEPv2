@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import wsei.project.BEP.entityes.Type;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Document("vpns")
@@ -18,7 +20,7 @@ public class VPN {
     @Field
     public String name;
     @Field
-    private String password = "none";
+    private String password;
     @Field
     private String connFileUrl;
     @Field
@@ -27,13 +29,13 @@ public class VPN {
     @DocumentReference(collection = "types")
     public Type type;
     @Field
-    private final LocalDate insertDate;
+    private LocalDateTime insertDate;
     @Field
-    public LocalDate modyfyDate;
+    public LocalDateTime modyfyDate;
 
     public VPN(String ipaddress, String name, String password, String connFileUrl, VpnTypes typeOfVpn, Type type) {
         this.id = UUID.randomUUID().toString();
-        this.insertDate = LocalDate.now();
+        this.insertDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
         this.ipaddress = ipaddress;
         this.name = name;
         this.password = password;
@@ -46,7 +48,7 @@ public class VPN {
         return id;
     }
 
-    public LocalDate getInsertDate() {
+    public LocalDateTime getInsertDate() {
         return insertDate;
     }
 
@@ -55,6 +57,7 @@ public class VPN {
     }
 
     public void setIpaddress(String ipaddress) {
+        this.setModyfyDate();
         this.ipaddress = ipaddress;
     }
 
@@ -63,6 +66,7 @@ public class VPN {
     }
 
     public void setName(String name) {
+        this.setModyfyDate();
         this.name = name;
     }
 
@@ -71,6 +75,7 @@ public class VPN {
     }
 
     public void setPassword(String password) {
+        this.setModyfyDate();
         this.password = password;
     }
 
@@ -79,6 +84,7 @@ public class VPN {
     }
 
     public void setConnFileUrl(String connFileUrl) {
+        this.setModyfyDate();
         this.connFileUrl = connFileUrl;
     }
 
@@ -87,6 +93,7 @@ public class VPN {
     }
 
     public void setTypeOfVpn(VpnTypes typeOfVpn) {
+        this.setModyfyDate();
         this.typeOfVpn = typeOfVpn;
     }
 
@@ -95,15 +102,16 @@ public class VPN {
     }
 
     public void setType(Type type) {
+        this.setModyfyDate();
         this.type = type;
     }
 
-    public LocalDate getModyfyDate() {
+    public LocalDateTime getModyfyDate() {
         return modyfyDate;
     }
 
-    public void setModyfyDate(LocalDate modyfyDate) {
-        this.modyfyDate = modyfyDate;
+    public void setModyfyDate() {
+        this.modyfyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
     @Override
