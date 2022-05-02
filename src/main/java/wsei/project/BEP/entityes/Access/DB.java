@@ -17,9 +17,9 @@ public class DB {
     @Field
     public String ipaddress;
     @Field
-    public String adminLogin = "sa";
+    public String adminLogin;
     @Field
-    private String password = "none";
+    private String password;
     @Field
     public Boolean integratedLogin = true;
 

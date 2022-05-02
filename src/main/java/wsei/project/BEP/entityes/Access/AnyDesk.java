@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import wsei.project.BEP.entityes.Type;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Document("anydesks")
@@ -24,13 +26,13 @@ public class AnyDesk {
     @DocumentReference(collection = "types")
     public Type type;
     @Field
-    private final LocalDate insertDate;
+    private LocalDateTime insertDate;
     @Field
-    public LocalDate modyfyDate;
+    public LocalDateTime modyfyDate;
 
     public AnyDesk(String name, String number, String password, Type type) {
         this.id = UUID.randomUUID().toString();
-        this.insertDate = LocalDate.now();
+        this.insertDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
         this.name = name;
         this.number = number;
         this.password = password;
@@ -55,6 +57,7 @@ public class AnyDesk {
     }
 
     public void setName(String name) {
+        this.setModyfyDate();
         this.name = name;
     }
 
@@ -63,6 +66,7 @@ public class AnyDesk {
     }
 
     public void setNumber(String number) {
+        this.setModyfyDate();
         this.number = number;
     }
 
@@ -71,6 +75,7 @@ public class AnyDesk {
     }
 
     public void setPassword(String password) {
+        this.setModyfyDate();
         this.password = password;
     }
 
@@ -79,22 +84,23 @@ public class AnyDesk {
     }
 
     public void setType(Type type) {
+        this.setModyfyDate();
         this.type = type;
     }
 
-    public LocalDate getModyfyDate() {
+    public LocalDateTime getModyfyDate() {
         return modyfyDate;
     }
 
-    public void setModyfyDate(LocalDate modyfyDate) {
-        this.modyfyDate = modyfyDate;
+    public void setModyfyDate() {
+        this.modyfyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
     public String getId() {
         return id;
     }
 
-    public LocalDate getInsertDate() {
+    public LocalDateTime getInsertDate() {
         return insertDate;
     }
 }
