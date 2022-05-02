@@ -8,6 +8,8 @@ import wsei.project.BEP.entityes.Access.DB;
 import wsei.project.BEP.entityes.Type;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Document("enovas")
@@ -17,17 +19,17 @@ public class Enova {
     @Field
     public String login;
     @Field
-    private String password = "none";
+    private String password;
 
     @Field
     @DocumentReference(collection = "types")
     public Type type;
 
     @Field
-    private final LocalDate insertDate;
+    private LocalDateTime insertDate;
 
     @Field
-    public LocalDate modyfyDate;
+    public LocalDateTime modyfyDate;
 
     @Field
     @DocumentReference(collection = "dbs")
@@ -39,19 +41,19 @@ public class Enova {
         this.password = password;
         this.db = db;
         this.type = type;
-        this.insertDate = LocalDate.now();
+        this.insertDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
-    public LocalDate getInsertDate() {
+    public LocalDateTime getInsertDate() {
         return insertDate;
     }
 
-    public LocalDate getModyfyDate() {
+    public LocalDateTime getModyfyDate() {
         return modyfyDate;
     }
 
-    public void setModyfyDate(LocalDate modyfyDate) {
-        this.modyfyDate = modyfyDate;
+    public void setModyfyDate() {
+        this.modyfyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
     public Type getType() {
@@ -59,6 +61,7 @@ public class Enova {
     }
 
     public void setType(Type type) {
+        this.setModyfyDate();
         this.type = type;
     }
 
@@ -71,6 +74,7 @@ public class Enova {
     }
 
     public void setLogin(String login) {
+        this.setModyfyDate();
         this.login = login;
     }
 
@@ -79,6 +83,7 @@ public class Enova {
     }
 
     public void setPassword(String password) {
+        this.setModyfyDate();
         this.password = password;
     }
 
@@ -87,6 +92,7 @@ public class Enova {
     }
 
     public void setDb(DB db) {
+        this.setModyfyDate();
         this.db = db;
     }
 
