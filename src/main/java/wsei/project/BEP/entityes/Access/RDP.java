@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import wsei.project.BEP.entityes.Type;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,14 +21,14 @@ public class RDP {
     @Field
     public String ipaddress;
     @Field
-    private String password = "none";
+    private String password;
     @Field
     @DocumentReference(collection = "types")
     public Type type;
     @Field
-    private final LocalDate insertDate;
+    private LocalDateTime insertDate;
     @Field
-    public LocalDate modyfyDate;
+    public LocalDateTime modyfyDate;
 
     public RDP(String name, String ipaddress, String password, Type type) {
         this.id = UUID.randomUUID().toString();
@@ -34,14 +36,14 @@ public class RDP {
         this.ipaddress = ipaddress;
         this.password = password;
         this.type = type;
-        this.insertDate = LocalDate.now();
+        this.insertDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
     public String getId() {
         return id;
     }
 
-    public LocalDate getInsertDate() {
+    public LocalDateTime getInsertDate() {
         return insertDate;
     }
 
@@ -50,6 +52,7 @@ public class RDP {
     }
 
     public void setName(String name) {
+        this.setModyfyDate();
         this.name = name;
     }
 
@@ -58,6 +61,7 @@ public class RDP {
     }
 
     public void setIpaddress(String ipaddress) {
+        this.setModyfyDate();
         this.ipaddress = ipaddress;
     }
 
@@ -66,6 +70,7 @@ public class RDP {
     }
 
     public void setPassword(String password) {
+        this.setModyfyDate();
         this.password = password;
     }
 
@@ -74,15 +79,16 @@ public class RDP {
     }
 
     public void setType(Type type) {
+        this.setModyfyDate();
         this.type = type;
     }
 
-    public LocalDate getModyfyDate() {
+    public LocalDateTime getModyfyDate() {
         return modyfyDate;
     }
 
-    public void setModyfyDate(LocalDate modyfyDate) {
-        this.modyfyDate = modyfyDate;
+    public void setModyfyDate() {
+        this.modyfyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
     @Override
