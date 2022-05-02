@@ -53,7 +53,7 @@ public class TypeController {
         if(id != null) return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.TEXT_PLAIN).body(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-//todo: Delete method
+
     @RequestMapping(
             method = RequestMethod.DELETE,
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -61,7 +61,7 @@ public class TypeController {
     )
     @ResponseBody
     public ResponseEntity<Type> deleteType(Type type){
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @RequestMapping(value = "/new",
