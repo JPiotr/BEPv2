@@ -73,8 +73,6 @@ public class BepApplication {
 
 			crepo.insert(c);
 			Acces a = new Acces(crepo.findByName("!Inicjacyjny"));
-			c.setAcces(a);
-			crepo.save(c);
 			a.getEnovaAccesses().add(e);
 			arepo.insert(a);
 		};

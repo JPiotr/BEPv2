@@ -7,9 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wsei.project.BEP.entityes.Client;
 import wsei.project.BEP.entityes.DefaultStatus;
+import wsei.project.BEP.entityes.Response;
 import wsei.project.BEP.services.entityes.ClientService;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -17,11 +20,25 @@ import java.util.List;
 @AllArgsConstructor
 public class ClientController {
     private final ClientService serv;
+//    @GetMapping(
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<List<Client>> index() {
+//        List<Client> x = serv.getAllClients();
+//        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(x);
+//    }
+
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Client>> index() {
-        List<Client> x = serv.getAllClients();
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(x);
+    public ResponseEntity<Response> index() {
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timestamp(LocalDateTime.now())
+                        .data(Map.of("clients", serv.getAllClients()))
+                        .massage("Clients Data collected.")
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build()
+        );
     }
 
     @GetMapping(
