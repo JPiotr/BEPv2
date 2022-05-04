@@ -1,7 +1,5 @@
 package wsei.project.BEP.mongo;
 
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import wsei.project.BEP.entityes.Client;
 import wsei.project.BEP.entityes.DefaultStatus;

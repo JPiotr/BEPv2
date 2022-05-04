@@ -112,7 +112,7 @@ public class Client {
         this.number = number;
     }
 
-    public Acces getAccesList() {
+    public Acces getAcces() {
         return acces;
     }
 
