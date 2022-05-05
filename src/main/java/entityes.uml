@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-1165.5" y="-148.5">wsei.project.BEP.entityes.Client</node>
+    <node x="-879.0" y="-148.5">wsei.project.BEP.entityes.Access.DB</node>
+    <node x="-688.5" y="-64.0">wsei.project.BEP.entityes.Type</node>
+    <node x="-1169.0" y="-15.0">wsei.project.BEP.entityes.DefaultStatus</node>
+    <node x="-889.0" y="-258.0">wsei.project.BEP.entityes.Access.Enova</node>
+    <node x="-602.0" y="-148.5">wsei.project.BEP.entityes.Access.AnyDesk</node>
+    <node x="-454.5" y="-148.5">wsei.project.BEP.entityes.Access.TeamViewer</node>
+    <node x="-712.5" y="-258.0">wsei.project.BEP.entityes.Access.RDP</node>
+    <node x="-768.5" y="-148.5">wsei.project.BEP.entityes.Access.VPN</node>
+    <node x="-997.0" y="-148.5">wsei.project.BEP.entityes.Access.Acces</node>
+    <node x="-1319.0" y="-148.5">wsei.project.BEP.entityes.Response</node>
+    <node x="-760.5" y="-15.0">wsei.project.BEP.entityes.Access.VpnTypes</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="wsei.project.BEP.entityes.Access.VPN" target="wsei.project.BEP.entityes.Type" relationship="TO_ONE">
+      <point x="0.0" y="14.5" />
+      <point x="-729.5" y="-91.0" />
+      <point x="-647.5" y="-91.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Acces" target="wsei.project.BEP.entityes.Access.VPN" relationship="TO_MANY">
+      <point x="0.0" y="14.5" />
+      <point x="-953.0" y="-56.5" />
+      <point x="-744.5" y="-56.5" />
+      <point x="-15.0" y="14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Enova" target="wsei.project.BEP.entityes.Access.Enova" relationship="DEPENDENCY">
+      <point x="15.0" y="14.5" />
+      <point x="-829.0" y="-211.5" />
+      <point x="-761.0" y="-211.5" />
+      <point x="-761.0" y="-243.5" />
+      <point x="45.0" y="0.0" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Client" target="wsei.project.BEP.entityes.DefaultStatus" relationship="TO_ONE">
+      <point x="22.0" y="14.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Acces" target="wsei.project.BEP.entityes.Access.TeamViewer" relationship="TO_MANY">
+      <point x="-15.0" y="14.5" />
+      <point x="-968.0" y="31.5" />
+      <point x="-373.5" y="31.5" />
+      <point x="15.0" y="14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.VPN" target="wsei.project.BEP.entityes.Access.VPN" relationship="DEPENDENCY">
+      <point x="-0.5" y="-14.5" />
+      <point x="-730.0" y="-171.0" />
+      <point x="-647.5" y="-171.0" />
+      <point x="-647.5" y="-134.0" />
+      <point x="39.0" y="0.0" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Acces" target="wsei.project.BEP.entityes.Access.RDP" relationship="TO_MANY">
+      <point x="-15.0" y="-14.5" />
+      <point x="-968.0" y="-275.5" />
+      <point x="-673.5" y="-275.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Enova" target="wsei.project.BEP.entityes.Access.DB" relationship="TO_ONE">
+      <point x="-15.0" y="14.5" />
+      <point x="-15.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.VPN" target="wsei.project.BEP.entityes.Access.VpnTypes" relationship="TO_ONE">
+      <point x="23.5" y="14.5" />
+      <point x="-2.5" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.AnyDesk" target="wsei.project.BEP.entityes.Access.AnyDesk" relationship="DEPENDENCY">
+      <point x="15.0" y="-14.5" />
+      <point x="-533.5" y="-171.0" />
+      <point x="-477.5" y="-171.0" />
+      <point x="-477.5" y="-134.0" />
+      <point x="53.5" y="0.0" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.TeamViewer" target="wsei.project.BEP.entityes.Type" relationship="TO_ONE">
+      <point x="0.0" y="14.5" />
+      <point x="-388.5" y="-91.0" />
+      <point x="-647.5" y="-91.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Acces" target="wsei.project.BEP.entityes.Access.Enova" relationship="TO_MANY">
+      <point x="15.0" y="-14.5" />
+      <point x="-938.0" y="-243.5" />
+      <point x="-45.0" y="0.0" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Client" target="wsei.project.BEP.entityes.Access.Acces" relationship="TO_ONE">
+      <point x="44.0" y="0.0" />
+      <point x="-44.0" y="0.0" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Acces" target="wsei.project.BEP.entityes.Client" relationship="TO_ONE">
+      <point x="0.0" y="-14.5" />
+      <point x="-953.0" y="-171.0" />
+      <point x="-1121.5" y="-171.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.AnyDesk" target="wsei.project.BEP.entityes.Type" relationship="TO_ONE">
+      <point x="0.0" y="14.5" />
+      <point x="-548.5" y="-91.0" />
+      <point x="-647.5" y="-91.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Acces" target="wsei.project.BEP.entityes.Access.AnyDesk" relationship="TO_MANY">
+      <point x="-30.0" y="-14.5" />
+      <point x="-983.0" y="-290.5" />
+      <point x="-548.5" y="-290.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Enova" target="wsei.project.BEP.entityes.Type" relationship="TO_ONE">
+      <point x="0.0" y="14.5" />
+      <point x="-844.0" y="-188.0" />
+      <point x="-786.0" y="-188.0" />
+      <point x="-786.0" y="-91.0" />
+      <point x="-647.5" y="-91.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.Acces" target="wsei.project.BEP.entityes.Access.Acces" relationship="DEPENDENCY">
+      <point x="10.5" y="14.5" />
+      <point x="-942.5" y="-106.5" />
+      <point x="-896.0" y="-106.5" />
+      <point x="-896.0" y="-134.0" />
+      <point x="44.0" y="0.0" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.TeamViewer" target="wsei.project.BEP.entityes.Access.TeamViewer" relationship="DEPENDENCY">
+      <point x="0.0" y="-14.5" />
+      <point x="-388.5" y="-171.0" />
+      <point x="-305.0" y="-171.0" />
+      <point x="-305.0" y="-134.0" />
+      <point x="66.0" y="0.0" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Client" target="wsei.project.BEP.entityes.Client" relationship="TO_MANY">
+      <point x="0.0" y="-14.5" />
+      <point x="-1121.5" y="-171.0" />
+      <point x="-1121.5" y="-171.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.RDP" target="wsei.project.BEP.entityes.Type" relationship="TO_ONE">
+      <point x="0.0" y="14.5" />
+      <point x="-673.5" y="-188.0" />
+      <point x="-786.0" y="-188.0" />
+      <point x="-786.0" y="-91.0" />
+      <point x="-647.5" y="-91.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="wsei.project.BEP.entityes.Access.RDP" target="wsei.project.BEP.entityes.Access.RDP" relationship="DEPENDENCY">
+      <point x="15.0" y="-14.5" />
+      <point x="-658.5" y="-275.5" />
+      <point x="-594.5" y="-275.5" />
+      <point x="-594.5" y="-243.5" />
+      <point x="39.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.3736479842674534" showDependencies="true" x="-810.5" y="-111.99999999999997" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+
