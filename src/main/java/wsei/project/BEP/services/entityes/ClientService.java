@@ -44,6 +44,12 @@ public class ClientService {
         return null;
     }
 
+    public List<Client> getClientsByNameOrCode(String name, String code){
+        List<Client> x = repo.findAllByNameOrCode(name,code);
+        if(x != null) return x;
+        return null;
+    }
+
     public Client addClient(Client client){
         if(!CheckExistance(client)){
             return repo.insert(client);
