@@ -86,6 +86,7 @@ public class ClientController {
     }
 
     @RequestMapping(
+                    value = "/status",
                     method = RequestMethod.PUT,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response> updateClientStatusByCode(@RequestParam(defaultValue = "!00000") String code,
