@@ -13,7 +13,6 @@ import java.util.*;
 public class Acces {
     @Id
     private String id;
-    @DocumentReference(collection = "clients")
     @Field
     public Client cid;
     @Field
@@ -32,13 +31,23 @@ public class Acces {
     public List<Enova> enovaAccesses = new ArrayList<>();
     @Field
     public List<VPN> vpnAccesses = new ArrayList<>();
+    @Field
+    public Integer accessesCount = 0;
 
-    public Acces(Client cid) {
+    public Acces() {
         this.id = UUID.randomUUID().toString();
-        this.cid = cid;
         this.insertDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));;
     }
-
+    public void setAccessesCount(){
+        this.accessesCount = this.adAccesses.size() +
+                this.tvAccesses.size() +
+                this.rdpAccesses.size() +
+                this.enovaAccesses.size() +
+                this.vpnAccesses.size();
+    }
+    public Integer getAccessesCount(){
+        return this.accessesCount;
+    }
 
     public List<VPN> getVpnAccesses() {
         return vpnAccesses;
@@ -80,6 +89,7 @@ public class Acces {
     }
 
     public void setModyfyDate() {
+        this.setAccessesCount();
         this.modyfyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
