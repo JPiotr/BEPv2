@@ -14,23 +14,19 @@ public class Acces {
     @Id
     private String id;
     @Field
-    public Client cid;
-    @Field
     private LocalDateTime insertDate;
-
     @Field
     public LocalDateTime modyfyDate;
-
     @Field
-    public List<TeamViewer> tvAccesses = new ArrayList<>();
+    protected List<TeamViewer> tvAccesses = new ArrayList<>();
     @Field
-    public List<AnyDesk> adAccesses = new ArrayList<>();
+    protected List<AnyDesk> adAccesses = new ArrayList<>();
     @Field
-    public List<RDP> rdpAccesses = new ArrayList<>();
+    protected List<RDP> rdpAccesses = new ArrayList<>();
     @Field
-    public List<Enova> enovaAccesses = new ArrayList<>();
+    protected List<Enova> enovaAccesses = new ArrayList<>();
     @Field
-    public List<VPN> vpnAccesses = new ArrayList<>();
+    protected List<VPN> vpnAccesses = new ArrayList<>();
     @Field
     public Integer accessesCount = 0;
 
@@ -69,15 +65,6 @@ public class Acces {
 
     public String getId() {
         return id;
-    }
-
-    public Client getCid() {
-        return cid;
-    }
-
-    public void setCid(Client cid) {
-        this.setModyfyDate();
-        this.cid = cid;
     }
 
     public LocalDateTime getInsertDate() {
@@ -124,7 +111,6 @@ public class Acces {
     public String toString() {
         return "Acces{" +
                 "id='" + id + '\'' +
-                ", cid=" + cid +
                 ", insertDate=" + insertDate +
                 ", modyfyDate=" + modyfyDate +
                 ", tvAccesses=" + tvAccesses +
