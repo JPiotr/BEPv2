@@ -71,13 +71,13 @@ public class BepApplication {
 			erepo.insert(e);
 			Client c = new Client("!00000","!Inicjacyjny",0);
 			Acces a = new Acces();
-			c.setAcces(a);
-			crepo.insert(c);
+
 
 			a.getEnovaAccesses().add(e);
 			a.getEnovaAccesses().add(e);
-			a.setCid(crepo.findByName("!00000"));
 			arepo.insert(a);
+			c.setAcces(a);
+			crepo.insert(c);
 		};
 	}
 
