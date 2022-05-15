@@ -10,7 +10,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import wsei.project.BEP.entityes.*;
-import wsei.project.BEP.entityes.Access.Acces;
+import wsei.project.BEP.entityes.Access.Access;
 import wsei.project.BEP.entityes.Access.DB;
 import wsei.project.BEP.entityes.Access.Enova;
 import wsei.project.BEP.mongo.Access.AccesRepository;
@@ -49,8 +49,8 @@ public class BepApplication {
 
 //			if(arepo.count() != 0){
 //				arepo.deleteAll();
-//				Acces initial = new Acces();
-//				List<Acces> alist = new ArrayList<Acces>();
+//				Access initial = new Access();
+//				List<Access> alist = new ArrayList<Access>();
 //				alist.add(initial);
 //				arepo.insert(initial);
 //				crepo.deleteAll();
@@ -70,7 +70,7 @@ public class BepApplication {
 			trepo.findByName("Enova"));
 			erepo.insert(e);
 			Client c = new Client("!00000","!Inicjacyjny",0);
-			Acces a = new Acces();
+			Access a = new Access();
 
 
 			a.getEnovaAccesses().add(e);

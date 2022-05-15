@@ -26,6 +26,7 @@ public class ClientController {
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response> index() {
+
         return ResponseEntity.ok(
                 Response.builder()
                         .timestamp(LocalDateTime.now())

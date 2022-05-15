@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Objects;
 import java.util.UUID;
-
+//todo:Delete Class
 @Document("types")
 public class Type {
     @Id
