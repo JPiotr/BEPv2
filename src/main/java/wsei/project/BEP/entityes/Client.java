@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
-import wsei.project.BEP.entityes.Access.Acces;
+import wsei.project.BEP.entityes.Access.Access;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,7 +22,7 @@ public class Client {
     @Field
     private LocalDateTime insertDate;
     @DocumentReference(collection = "acceses")
-    private Acces acces;
+    private Access access;
     @Field
     public String name;
     @Field
@@ -31,7 +31,7 @@ public class Client {
     @Field
     public DefaultStatus status;
     @Field
-    public LocalDateTime modyfyDate;
+    public LocalDateTime modifyDate;
     @Field
     public Boolean isBR;
     @Field
@@ -50,12 +50,12 @@ public class Client {
         return insertDate;
     }
 
-    public LocalDateTime getModyfyDate() {
-        return modyfyDate;
+    public LocalDateTime getModifyDate() {
+        return modifyDate;
     }
 
-    public void setModyfyDate() {
-        this.modyfyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
+    public void setModifyDate() {
+        this.modifyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
     public DefaultStatus getStatus() {
@@ -63,7 +63,7 @@ public class Client {
     }
 
     public void setStatus(DefaultStatus status) {
-        this.setModyfyDate();
+        this.setModifyDate();
         this.status = status;
     }
 
@@ -72,7 +72,7 @@ public class Client {
     }
 
     public void setBrClients(List<Client> brClients) {
-        this.setModyfyDate();
+        this.setModifyDate();
         this.brClients = brClients;
     }
 
@@ -81,7 +81,7 @@ public class Client {
     }
 
     public void setBR(Boolean BR) {
-        this.setModyfyDate();
+        this.setModifyDate();
         isBR = BR;
     }
 
@@ -90,7 +90,7 @@ public class Client {
     }
 
     public void setCode(String code) {
-        this.setModyfyDate();
+        this.setModifyDate();
         this.code = code;
     }
 
@@ -99,7 +99,7 @@ public class Client {
     }
 
     public void setName(String name) {
-        this.setModyfyDate();
+        this.setModifyDate();
         this.name = name;
     }
 
@@ -108,17 +108,17 @@ public class Client {
     }
 
     public void setNumber(Integer number) {
-        this.setModyfyDate();
+        this.setModifyDate();
         this.number = number;
     }
 
-    public Acces getAcces() {
-        return acces;
+    public Access getAcces() {
+        return access;
     }
 
-    public void setAcces(Acces acces) {
-        this.setModyfyDate();
-        this.acces = acces;
+    public void setAcces(Access access) {
+        this.setModifyDate();
+        this.access = access;
     }
 
     @Override
@@ -126,11 +126,11 @@ public class Client {
         return "Client{" +
                 "code='" + code + '\'' +
                 ", insertDate=" + insertDate +
-                ", acces=" + acces +
+                ", access=" + access +
                 ", name='" + name + '\'' +
                 ", number=" + number +
                 ", status=" + status +
-                ", modyfyDate=" + modyfyDate +
+                ", modyfyDate=" + modifyDate +
                 ", isBR=" + isBR +
                 ", brClients=" + brClients +
                 '}';

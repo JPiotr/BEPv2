@@ -2,7 +2,6 @@ package wsei.project.BEP.entityes.Access;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.*;
-import wsei.project.BEP.entityes.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,13 +9,13 @@ import java.time.LocalTime;
 import java.util.*;
 
 @Document("acceses")
-public class Acces {
+public class Access {
     @Id
     private String id;
     @Field
     private LocalDateTime insertDate;
     @Field
-    public LocalDateTime modyfyDate;
+    public LocalDateTime modifyDate;
     @Field
     protected List<TeamViewer> tvAccesses = new ArrayList<>();
     @Field
@@ -30,7 +29,7 @@ public class Acces {
     @Field
     public Integer accessesCount = 0;
 
-    public Acces() {
+    public Access() {
         this.id = UUID.randomUUID().toString();
         this.insertDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));;
     }
@@ -71,13 +70,13 @@ public class Acces {
         return insertDate;
     }
 
-    public LocalDateTime getModyfyDate() {
-        return modyfyDate;
+    public LocalDateTime getModifyDate() {
+        return modifyDate;
     }
 
     public void setModyfyDate() {
         this.setAccessesCount();
-        this.modyfyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
+        this.modifyDate = LocalDateTime.from(LocalDate.now().atTime(LocalTime.now()));
     }
 
     public List<TeamViewer> getTvAccesses() {
@@ -109,10 +108,10 @@ public class Acces {
 
     @Override
     public String toString() {
-        return "Acces{" +
+        return "Access{" +
                 "id='" + id + '\'' +
                 ", insertDate=" + insertDate +
-                ", modyfyDate=" + modyfyDate +
+                ", modyfyDate=" + modifyDate +
                 ", tvAccesses=" + tvAccesses +
                 ", adAccesses=" + adAccesses +
                 ", rdpAccesses=" + rdpAccesses +
